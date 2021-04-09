@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500&display=swap');
+
+// Colors
+$white: #ffffff;
+$black: #000;
+
+//Text
+$text-font:'Roboto', sans-serif;
+
+// Mixins
+
+@mixin display($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin text ($size, $color, $weight) {
+    font-family: $text-font;
+    font-size: $size;
+    color: $color;
+    font-weight: $weight;
+}

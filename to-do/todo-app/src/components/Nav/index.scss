@@ -1,0 +1,5 @@
+@import './../../assets/styles/global-styles.scss';
+
+.container__nav {
+    @include text(300px, $black, 900);
+}

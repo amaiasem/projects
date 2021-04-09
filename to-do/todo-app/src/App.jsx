@@ -1,10 +1,10 @@
+import React from 'react';
 import './App.scss';
+import Nav from './components/Nav';
 
 function App() {
   return (
-    <div className="App">
-      <h1>To do</h1>
-    </div>
+    <Nav />
   );
 }
 
