@@ -1,0 +1,29 @@
+@import './../../styles/global-styles.scss';
+
+
+.container__cards {
+    padding: 0 30px;
+    margin-top: 50px;
+    @include display(row, center, flex-start);
+    flex-wrap: wrap;
+    @include text(20px, $white, 600);
+
+    .card-item {
+        height: 200px;
+        width: 45%;
+        min-width: 200px;
+        margin: 5px;
+        border-radius: 25px;
+        @include displayAllcenter;
+    }
+
+    .work { @include card-background($lightBlue, $darklightBlue)};
+    .home { @include card-background($yellow, $darkyellow)};
+    .family { @include card-background($purple, $darkpurple)};
+    .shopping { @include card-background($red, $darkred)}
+    .new { 
+        color: $black;
+        border: 2px dashed $darkBlue;
+        box-shadow: 5px 5px lightgrey;
+        }
+}

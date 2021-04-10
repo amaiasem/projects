@@ -5,6 +5,7 @@
 $text-font:'Roboto', sans-serif;
 
 // Mixins
+
 @mixin displayAllcenter {
     display: flex;
     justify-content: center;
@@ -18,9 +19,16 @@ $text-font:'Roboto', sans-serif;
     align-items: $align;
 }
 
-@mixin text ($size, $color, $weight) {
+@mixin text($size, $color, $weight) {
     font-family: $text-font;
     font-size: $size;
     color: $color;
     font-weight: $weight;
+}
+
+//Card background and box shadow
+
+@mixin card-background ($background, $shadowColor){
+    background-color: $background;
+    box-shadow: 5px 5px $shadowColor;
 }
