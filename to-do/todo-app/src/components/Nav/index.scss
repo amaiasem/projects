@@ -1,5 +1,9 @@
-@import './../../assets/styles/global-styles.scss';
+@import './../../styles/global-styles.scss';
 
 .container__nav {
-    @include text(300px, $black, 900);
+    height: 80px;
+    width: 100%;
+    @include displayAllcenter;
+    background-color: $darkBlue;
+    @include text(30px, $white, 600);
 }
