@@ -9,21 +9,42 @@
     @include text(20px, $white, 600);
 
     .card-item {
+        all: unset;
+        text-decoration: none;
+        color: inherit;
+        user-select: none;
+        cursor: pointer;
         height: 200px;
         width: 45%;
         min-width: 200px;
-        margin: 5px;
+        margin: 8px;
         border-radius: 25px;
         @include displayAllcenter;
+
+        &:hover {
+            transform: translate(2px,2px);
+            font-size: 22px;
+        }
     }
 
-    .work { @include card-background($lightBlue, $darklightBlue)};
-    .home { @include card-background($yellow, $darkyellow)};
-    .family { @include card-background($purple, $darkpurple)};
-    .shopping { @include card-background($red, $darkred)}
+    .blue { 
+        @include card-background($lightBlue, $darklightBlue);
+        color: $darklightBlue
+    };
+    .yellow { 
+        @include card-background($yellow, $darkyellow);
+        color: $darkyellow
+    };
+    .purple { 
+        @include card-background($purple, $darkpurple);
+        color: $darkpurple
+    };
+    .red { @include card-background($red, $darkred);
+        color: $darkred
+    };
     .new { 
-        color: $black;
-        border: 2px dashed $darkBlue;
-        box-shadow: 5px 5px lightgrey;
-        }
+        color: $lightgrey;
+        border: 2px dashed $lightgrey;
+        box-shadow: 5px 5px $lightgrey;
+    }
 }
