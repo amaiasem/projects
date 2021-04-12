@@ -44,7 +44,7 @@
         margin: 5px 0;
         @include display(column, space-between, flex-start);
         border: 1px solid $lightgrey;
-        border-radius: 5px;
+        border-radius: 10px;
 
         p{
             font-size: 20px;
@@ -57,6 +57,21 @@
                 @include text(18px, $darkBlue, 400);
                 font-style: italic;
             }
+        }
+    }
+    .task--create{
+        all: unset;
+        cursor: pointer;
+        width: 80%;
+        height: 50px;
+        background-color: $darkBlue;
+        border-radius: 10px;
+        margin: 10px 0;
+        @include text(20px, $white, 600);
+        @include displayAllcenter;
+
+        &:hover {
+            background-color: $black;
         }
     }
 }

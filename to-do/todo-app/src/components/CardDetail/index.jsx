@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import cards from '../../constants/user';
 import './index.scss';
 
@@ -41,7 +42,9 @@ function CardDetails() {
           </div>
         ))
         }
-      <button type="button" onClick={() => {}}>CREATE TASK</button>
+      <Link className="task--create" to="/">
+        <p>CREATE TASK</p>
+      </Link>
     </section>
   );
 }
