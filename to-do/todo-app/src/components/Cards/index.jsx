@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
-import cards from '../../constants/user';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import loadTodos from '../../Redux/actions/toDoActionCreators';
 
-function Cards() {
+function Cards({ cards, actions }) {
+  useEffect(() => {
+    actions.loadTodos();
+  }, []);
+
   return (
     <section className="container__cards">
       {
@@ -20,4 +27,23 @@ function Cards() {
   );
 }
 
-export default Cards;
+Cards.propTypes = {
+  cards: PropTypes.shape([]).isRequired,
+  actions: PropTypes.shape({
+    loadTodos: PropTypes.func.isRequired
+  }).isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    cards: state.todoReducer.cards
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ loadTodos }, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cards);
