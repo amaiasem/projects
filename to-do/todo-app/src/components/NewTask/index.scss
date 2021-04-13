@@ -1,0 +1,32 @@
+@import './../../styles/global-styles.scss';
+
+.new-task__container {
+    width: 100%;
+    padding: 20px;
+    @include text(20px, $black, 400);
+    @include display(column, flex-start, center);
+
+    
+    .new-task__title{
+        width: 100%;
+        @include display(column, center, flex-start);
+
+    .go-back{
+        all: unset;
+        align-self: 'flex-start';
+        @include text(30px, $darkBlue, 300);
+    }
+        h2{
+            @include text(40px, $darkBlue, 500);
+        }
+
+        form {
+            input {
+                all: unset;
+                height: 50px;
+                @include text(25px, $lightgrey, 400);
+                border-bottom: 1px solid $lightgrey;
+            }
+        }
+    }
+}
