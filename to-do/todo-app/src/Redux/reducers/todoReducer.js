@@ -1,7 +1,7 @@
+/* eslint-disable no-debugger */
 import toDoActionTypes from '../actions/toDoActionTypes';
-import initialState from '../stores/initialState';
 
-export default function todoReducer(state = initialState, action) {
+export default function todoReducer(state = [], action) {
   switch (action.type) {
     case toDoActionTypes.LOAD_TODOS:
       return state;

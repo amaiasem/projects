@@ -42,7 +42,7 @@ function CardDetails() {
           </div>
         ))
         }
-      <Link className="task--create" to="/">
+      <Link className="task--create" to={`/card-details/${card.name}/new-task`}>
         <p>CREATE TASK</p>
       </Link>
     </section>

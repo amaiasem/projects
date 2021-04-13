@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-debugger */
 import React, { useEffect } from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
@@ -8,13 +10,14 @@ import loadTodos from '../../Redux/actions/toDoActionCreators';
 
 function Cards({ cards, actions }) {
   useEffect(() => {
+    debugger;
     actions.loadTodos();
   }, []);
-
+  console.log(cards);
   return (
     <section className="container__cards">
       {
-        cards.map((card) => (
+        cards && cards.map((card) => (
           <Link to={`/card-details/${card.name}`} className={`card-item ${card.color}`}>
             <h2>{card.name}</h2>
           </Link>
@@ -34,9 +37,9 @@ Cards.propTypes = {
   }).isRequired
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({ cards }) {
   return {
-    cards: state.todoReducer.cards
+    cards
   };
 }
 
