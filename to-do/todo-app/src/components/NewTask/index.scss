@@ -29,4 +29,32 @@
             }
         }
     }
+
+    .task-details{
+        width: 100%;
+        @include display(column, center, flex-start);
+        margin-top: 20px;
+        color: $darkBlue;
+        
+        div{
+            @include display(row, flex-start, center);
+            
+            .far{
+                font-size: 20px;
+                margin-right: 10px;
+            }
+            
+            .date-picker{
+                height: 40px;
+                border: none;
+                font-size: 20px;
+                display: inline-block;
+            }
+
+            .react-datepicker__tab-loop{
+                display: inline-block;
+            }
+
+        }
+    }
 }
