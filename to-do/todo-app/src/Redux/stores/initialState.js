@@ -1,25 +1,26 @@
 const initialState = {
-  cards: [
-    {
-      name: 'Work',
-      color: 'blue',
-      tasks: [
-        {
-          taskName: 'Create to do app',
-          date: 'Friday, 16 April',
-          hour: '2pm'
-        },
-        {
-          taskName: 'Create portfolio',
-          date: 'Tuesday, 20 April',
-          hour: '5pm'
-        }
-      ]
-    },
-    { name: 'Home', color: 'yellow' },
-    { name: 'Family', color: 'purple' },
-    { name: 'Shopping', color: 'red' }
-  ]
+  cards: {
+    cards: [
+      {
+        name: 'Work',
+        color: 'blue',
+        tasks: [
+          {
+            taskName: 'Create to do app',
+            description: 'React app with redux'
+          },
+          {
+            taskName: 'Create portfolio',
+            description: 'React app with redux'
+          }
+        ]
+      },
+      { name: 'Home', color: 'yellow' },
+      { name: 'Family', color: 'purple' },
+      { name: 'Shopping', color: 'red' }
+    ],
+    card: {}
+  }
 };
 
 export default initialState;
