@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-debugger */
 import React, { useEffect } from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
@@ -10,10 +8,8 @@ import loadTodos from '../../Redux/actions/toDoActionCreators';
 
 function Cards({ cards, actions }) {
   useEffect(() => {
-    debugger;
     actions.loadTodos();
   }, []);
-  console.log(cards);
   return (
     <section className="container__cards">
       {

@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import toDoActionTypes from '../actions/toDoActionTypes';
 
 export default function todoReducer(state = [], action) {

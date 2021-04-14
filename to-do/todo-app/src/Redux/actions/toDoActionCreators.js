@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import toDoActionTypes from './toDoActionTypes';
 
 export default function loadTodos() {
