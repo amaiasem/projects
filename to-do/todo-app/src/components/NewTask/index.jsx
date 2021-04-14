@@ -1,10 +1,16 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { createNewTask } from '../../Redux/actions/toDoActionCreators';
 import './index.scss';
 
-function NewTask() {
+function NewTask({ match: { params }, actions }) {
   const [taskName, setTaskName] = useState('');
   const [description, setDescription] = useState('');
+
+  const cardName = params.name;
 
   return (
     <section className="new-task__container">
@@ -27,17 +33,23 @@ function NewTask() {
           <textarea
             name="textarea"
             rows="10"
-            cols="50"
+            cols="40"
             onChange={(value) => setDescription(value.target.value)}
             value={description}
           >
             Add a description
           </textarea>
-          <button type="submit">CREATE TASK</button>
+          <button type="submit" onSubmit={() => actions.createNewTask(cardName, taskName, description)}>CREATE TASK</button>
         </form>
       </div>
     </section>
   );
 }
 
-export default NewTask;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ createNewTask }, dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(NewTask);

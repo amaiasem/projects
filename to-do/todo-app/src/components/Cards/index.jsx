@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import './index.scss';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import loadTodos from '../../Redux/actions/toDoActionCreators';
+import './index.scss';
 
 function Cards({ cards, actions }) {
   useEffect(() => {
@@ -35,7 +35,7 @@ Cards.propTypes = {
 
 function mapStateToProps({ cards }) {
   return {
-    cards
+    cards: cards.cards
   };
 }
 
