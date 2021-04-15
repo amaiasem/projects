@@ -15,7 +15,7 @@ function NewTask({ match: { params }, actions }) {
   return (
     <section className="new-task__container">
       <div className="new-task__title">
-        <Link className="go-back" to="/">
+        <Link className="go-back" to={`/card-details/${cardName}`}>
           <i className="fas fa-long-arrow-alt-left" />
         </Link>
         <h2>
@@ -39,7 +39,7 @@ function NewTask({ match: { params }, actions }) {
           >
             Add a description
           </textarea>
-          <button type="submit" onSubmit={() => actions.createNewTask(cardName, taskName, description)}>CREATE TASK</button>
+          <button type="button" onClick={() => actions.createNewTask(cardName, taskName, description)}>CREATE TASK</button>
         </form>
       </div>
     </section>
