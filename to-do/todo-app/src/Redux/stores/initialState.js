@@ -15,9 +15,48 @@ const initialState = {
           }
         ]
       },
-      { name: 'Home', color: 'yellow' },
-      { name: 'Family', color: 'purple' },
-      { name: 'Shopping', color: 'red' }
+      {
+        name: 'Home',
+        color: 'yellow',
+        tasks: [
+          {
+            taskName: 'Create to do app',
+            description: 'React app with redux'
+          },
+          {
+            taskName: 'Create portfolio',
+            description: 'React app with redux'
+          }
+        ]
+      },
+      {
+        name: 'Family',
+        color: 'purple',
+        tasks: [
+          {
+            taskName: 'Create to do app',
+            description: 'React app with redux'
+          },
+          {
+            taskName: 'Create portfolio',
+            description: 'React app with redux'
+          }
+        ]
+      },
+      {
+        name: 'Shopping',
+        color: 'red',
+        tasks: [
+          {
+            taskName: 'Create to do app',
+            description: 'React app with redux'
+          },
+          {
+            taskName: 'Create portfolio',
+            description: 'React app with redux'
+          }
+        ]
+      }
     ],
     card: {}
   }

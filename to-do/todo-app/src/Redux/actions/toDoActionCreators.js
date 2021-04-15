@@ -15,8 +15,7 @@ export function loadCard(cardName) {
 
 export function createNewTask(card, name, description) {
   const newTask = { cardName: card, name, description };
-  // eslint-disable-next-line no-debugger
-  debugger;
+
   return {
     type: toDoActionTypes.CREATE_TASK,
     data: newTask

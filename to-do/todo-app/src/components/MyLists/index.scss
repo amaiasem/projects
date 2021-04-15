@@ -1,0 +1,23 @@
+@import './../../styles/global-styles.scss';
+
+.todo{
+    background-color: $darkBlue;
+    height: 100vh;
+
+    header{
+        height: 50px;
+        padding: 0 20px;
+        @include display(row, space-between, center);
+        box-shadow: 0px 2px $black;
+        
+        h1 {
+            @include text(20px, $white, 400);
+        }
+        .profile-picture{
+            background-color: $red;
+            height: 30px;
+            width: 30px;
+            border-radius: 25px;
+        }
+    }
+}

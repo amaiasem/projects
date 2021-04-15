@@ -5,8 +5,7 @@ export default function todoReducer(state = {}, actions) {
   let selectedCard = [];
   let notSelectedCards = [];
   let newState = {};
-  // eslint-disable-next-line no-debugger
-  debugger;
+
   switch (actions.type) {
     case toDoActionTypes.LOAD_TODOS:
       return state;

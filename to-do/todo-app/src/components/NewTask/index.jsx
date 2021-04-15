@@ -12,6 +12,13 @@ function NewTask({ match: { params }, actions }) {
 
   const cardName = params.name;
 
+  function createTaskCleanInputs() {
+    actions.createNewTask(cardName, taskName, description);
+    alert(`Your ${cardName} card has been updated with ${taskName}!`);
+    setTaskName('');
+    setDescription('');
+  }
+
   return (
     <section className="new-task__container">
       <div className="new-task__title">
@@ -39,7 +46,7 @@ function NewTask({ match: { params }, actions }) {
           >
             Add a description
           </textarea>
-          <button type="button" onClick={() => actions.createNewTask(cardName, taskName, description)}>CREATE TASK</button>
+          <button type="button" onClick={() => createTaskCleanInputs()}>CREATE TASK</button>
         </form>
       </div>
     </section>
