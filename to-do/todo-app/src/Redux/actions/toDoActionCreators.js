@@ -13,8 +13,9 @@ export function loadCard(cardName) {
   };
 }
 
-export function createNewTask(card, taskName, description) {
-  const newTask = { cardName: card, taskName, description };
+export function createNewTask(card, name, description) {
+  const newTask = { cardName: card, name, description };
+
   return {
     type: toDoActionTypes.CREATE_TASK,
     data: newTask
