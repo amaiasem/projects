@@ -12,6 +12,18 @@ const initialState = {
           {
             taskName: 'Create portfolio',
             description: 'React app with redux'
+          },
+          {
+            taskName: 'Create portfolio',
+            description: 'React app with redux'
+          },
+          {
+            taskName: 'Create portfolio',
+            description: 'React app with redux'
+          },
+          {
+            taskName: 'Create portfolio',
+            description: 'React app with redux'
           }
         ]
       },
@@ -40,6 +52,14 @@ const initialState = {
           {
             taskName: 'Create portfolio',
             description: 'React app with redux'
+          },
+          {
+            taskName: 'Create to do app',
+            description: 'React app with redux'
+          },
+          {
+            taskName: 'Create portfolio',
+            description: 'React app with redux'
           }
         ]
       },
@@ -49,6 +69,10 @@ const initialState = {
         tasks: [
           {
             taskName: 'Create to do app',
+            description: 'React app with redux'
+          },
+          {
+            taskName: 'Create portfolio',
             description: 'React app with redux'
           },
           {

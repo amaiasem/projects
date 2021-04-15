@@ -26,9 +26,9 @@ $text-font:'Roboto', sans-serif;
     font-weight: $weight;
 }
 
-//Card background and box shadow
+//Card background and text color
 
-@mixin card-background ($background, $shadowColor){
+@mixin card-background ($background, $color){
     background-color: $background;
-    box-shadow: 5px 5px $shadowColor;
+    color: $color;
 }

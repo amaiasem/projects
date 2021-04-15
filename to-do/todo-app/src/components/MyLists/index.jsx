@@ -14,25 +14,30 @@ function MyLists({ cards, actions }) {
     <section className="todo">
       <header>
         <h1>My Lists</h1>
-        <div className="profile-picture" />
+        <div className="profile__container">
+          <p>Logout</p>
+          <div className="profile-picture" />
+        </div>
       </header>
       <div className="my-lists__container">
         {
             cards && cards.map((card) => (
               <div className={`list__container ${card.color}`}>
-                <div>
+                <div className="list__title">
                   <h3>{card.name}</h3>
                 </div>
-                <ul>
+                <ul className="blue2">
                   {
                       card && card.tasks.map((task) => (
                         <li>
                           <input
-                            id={task.name}
-                            value={task.name}
+                            id={task.taskName}
+                            value={task.taskName}
                             type="checkbox"
                           />
-                          <label htmlFor={task.name}>{task.name}</label>
+                          <label htmlFor={task.taskName}>
+                            {task.taskName}
+                          </label>
                         </li>
                       ))
                     }
