@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { PropTypes } from 'prop-types';
-import loadTodos, { createNewTask } from '../../Redux/actions/toDoActionCreators';
+import loadTodos, { createNewTask, deleteTask } from '../../Redux/actions/toDoActionCreators';
 import './index.scss';
 
 function MyLists({ cards, actions }) {
@@ -40,14 +40,19 @@ function MyLists({ cards, actions }) {
                     {
                     card && card.tasks.map((task) => (
                       <li>
-                        <input
-                          id={task.taskName}
-                          value={task.taskName}
-                          type="checkbox"
-                        />
-                        <label htmlFor={task.taskName}>
-                          {task.taskName}
-                        </label>
+                        <div>
+                          <input
+                            id={task.taskName}
+                            value={task.taskName}
+                            type="checkbox"
+                          />
+                          <label htmlFor={task.taskName}>
+                            {task.taskName}
+                          </label>
+                        </div>
+                        <button type="button" onClick={() => actions.deleteTask(card.name, task.taskName)}>
+                          <i className="fas fa-times" />
+                        </button>
                       </li>
                     ))
                     }
@@ -81,7 +86,8 @@ MyLists.propTypes = {
   cards: PropTypes.shape([]).isRequired,
   actions: PropTypes.shape({
     loadTodos: PropTypes.func.isRequired,
-    createNewTask: PropTypes.func.isRequired
+    createNewTask: PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired
   }).isRequired
 };
 
@@ -93,7 +99,7 @@ function mapStateToProps({ cards }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ loadTodos, createNewTask }, dispatch)
+    actions: bindActionCreators({ loadTodos, createNewTask, deleteTask }, dispatch)
   };
 }
 
