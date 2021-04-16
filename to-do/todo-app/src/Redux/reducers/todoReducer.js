@@ -16,7 +16,7 @@ export default function todoReducer(state = {}, actions) {
       newState = { ...state };
       selectedCard = newState.cards.find((card) => card.name === actions.data.cardName);
       notSelectedCards = newState.cards.filter((card) => card.name !== actions.data.cardName);
-      newState = { cards: [...notSelectedCards, selectedCard = { ...selectedCard, tasks: [...selectedCard.tasks, { taskName: actions.data.name, description: actions.data.description }] }], card: selectedCard };
+      newState = { cards: [...notSelectedCards, selectedCard = { ...selectedCard, tasks: [...selectedCard.tasks, { taskName: actions.data.name }] }], card: selectedCard };
       return newState;
     default:
       return state;

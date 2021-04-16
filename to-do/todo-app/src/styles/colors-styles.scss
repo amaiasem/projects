@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 $white: #ffffff;
 $black: #1b1c20;
 $blackOpacity: #1b1c206c;
@@ -12,3 +14,9 @@ $purple: #a362ea;
 $darkpurple: #7e2be0;
 $red: #f55c33;
 $darkred: #D6360A;
+
+//Bootstrap
+
+$primary: #222429;
+$component-active-color: #222429;
+$component-active-bg: $lightgrey;

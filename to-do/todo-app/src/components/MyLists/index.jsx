@@ -1,11 +1,19 @@
-import React, { useEffect } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { PropTypes } from 'prop-types';
-import loadTodos from '../../Redux/actions/toDoActionCreators';
+import loadTodos, { createNewTask } from '../../Redux/actions/toDoActionCreators';
 import './index.scss';
 
 function MyLists({ cards, actions }) {
+  const [taskName, setTaskName] = useState('');
+
+  function createTaskCleanInputs(cardName) {
+    actions.createNewTask(cardName, taskName);
+    setTaskName('');
+  }
+
   useEffect(() => {
     actions.loadTodos();
   }, []);
@@ -26,22 +34,41 @@ function MyLists({ cards, actions }) {
                 <div className="list__title">
                   <h3>{card.name}</h3>
                 </div>
-                <ul className="blue2">
-                  {
-                      card && card.tasks.map((task) => (
-                        <li>
-                          <input
-                            id={task.taskName}
-                            value={task.taskName}
-                            type="checkbox"
-                          />
-                          <label htmlFor={task.taskName}>
-                            {task.taskName}
-                          </label>
-                        </li>
-                      ))
+                <div className="list__content">
+
+                  <ul className="blue2">
+                    {
+                    card && card.tasks.map((task) => (
+                      <li>
+                        <input
+                          id={task.taskName}
+                          value={task.taskName}
+                          type="checkbox"
+                        />
+                        <label htmlFor={task.taskName}>
+                          {task.taskName}
+                        </label>
+                      </li>
+                    ))
                     }
-                </ul>
+                  </ul>
+                  <div className="new-task__container">
+                    <input
+                      type="text"
+                      placeholder="New task"
+                      onChange={(event) => setTaskName(event.target.value)}
+                      value={taskName}
+                    />
+                    <button
+                      className="blue"
+                      type="button"
+                      onClick={() => createTaskCleanInputs(card.name)}
+                    >
+                      Add
+
+                    </button>
+                  </div>
+                </div>
               </div>
             ))
         }
@@ -53,7 +80,8 @@ function MyLists({ cards, actions }) {
 MyLists.propTypes = {
   cards: PropTypes.shape([]).isRequired,
   actions: PropTypes.shape({
-    loadTodos: PropTypes.func.isRequired
+    loadTodos: PropTypes.func.isRequired,
+    createNewTask: PropTypes.func.isRequired
   }).isRequired
 };
 
@@ -65,7 +93,7 @@ function mapStateToProps({ cards }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ loadTodos }, dispatch)
+    actions: bindActionCreators({ loadTodos, createNewTask }, dispatch)
   };
 }
 

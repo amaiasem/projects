@@ -14,7 +14,6 @@ function NewTask({ match: { params }, actions }) {
 
   function createTaskCleanInputs() {
     actions.createNewTask(cardName, taskName, description);
-    alert(`Your ${cardName} card has been updated with ${taskName}!`);
     setTaskName('');
     setDescription('');
   }
