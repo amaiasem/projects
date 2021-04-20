@@ -51,6 +51,36 @@
                     text-align: center;
                     margin: 5px 0;
                 }
+
+                .tasks__progress{
+
+                    @include display(row, center, center);
+
+                    label{
+                        margin: 0 10px 5px 0;
+                        font-weight: 500;
+                    }
+                    progress{
+                        &[value]{
+                            -webkit-appearance: none;
+                            appearance: none;
+                            width: 250px;
+                            height: 10px;
+                        }
+                        
+                        &[value]::-webkit-progress-bar{
+                            background-color: $lighterDarkBlue;
+                            border-radius: 2px;
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+                        }
+                        
+                        &[value]::-webkit-progress-value{
+                            border-radius: 2px;
+                            background: $darkBlue;
+                            
+                        }  
+                    }
+                }
             }
 
             .list__content{

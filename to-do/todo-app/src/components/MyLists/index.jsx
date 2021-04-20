@@ -14,6 +14,10 @@ function MyLists({ cards, actions }) {
     setTaskName('');
   }
 
+  function percentageDone(totalTasks, doneTasks) {
+    return (doneTasks / totalTasks) * 100;
+  }
+
   useEffect(() => {
     actions.loadTodos();
   }, []);
@@ -33,6 +37,10 @@ function MyLists({ cards, actions }) {
               <div className={`list__container ${card.color}`}>
                 <div className="list__title">
                   <h3>{card.name}</h3>
+                  <div className="tasks__progress">
+                    <label htmlFor="file">Done:</label>
+                    <progress id="file" value={percentageDone(card.tasks.length, 1)} max="100" />
+                  </div>
                 </div>
                 <div className="list__content">
 
