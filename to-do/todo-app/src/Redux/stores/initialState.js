@@ -4,80 +4,84 @@ const initialState = {
       {
         name: 'Work',
         color: 'blue',
+        done: 3,
         tasks: [
           {
             taskName: 'Create to do app',
-            description: 'React app with redux'
+            done: true
           },
           {
             taskName: 'Create portfolio',
-            description: 'React app with redux'
+            done: true
           },
           {
             taskName: 'Create portfolio',
-            description: 'React app with redux'
+            done: true
           },
           {
             taskName: 'Create portfolio',
-            description: 'React app with redux'
+            done: false
           },
           {
             taskName: 'Create portfolio',
-            description: 'React app with redux'
+            done: false
           }
         ]
       },
       {
         name: 'Home',
         color: 'yellow',
+        done: 0,
         tasks: [
           {
-            taskName: 'Create to do app',
-            description: 'React app with redux'
+            taskName: 'Create portfolio',
+            done: false
           },
           {
             taskName: 'Create portfolio',
-            description: 'React app with redux'
+            done: false
           }
         ]
       },
       {
         name: 'Family',
         color: 'purple',
+        done: 1,
         tasks: [
           {
-            taskName: 'Create to do app',
-            description: 'React app with redux'
+            taskName: 'Create portfolio',
+            done: false
           },
           {
             taskName: 'Create portfolio',
-            description: 'React app with redux'
+            done: true
           },
           {
             taskName: 'Create to do app',
-            description: 'React app with redux'
+            done: false
           },
           {
             taskName: 'Create portfolio',
-            description: 'React app with redux'
+            done: false
           }
         ]
       },
       {
         name: 'Shopping',
         color: 'red',
+        done: 0,
         tasks: [
           {
             taskName: 'Create to do app',
-            description: 'React app with redux'
+            done: false
           },
           {
             taskName: 'Create portfolio',
-            description: 'React app with redux'
+            done: false
           },
           {
             taskName: 'Create portfolio',
-            description: 'React app with redux'
+            done: false
           }
         ]
       }

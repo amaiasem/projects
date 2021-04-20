@@ -1,11 +1,23 @@
-import React, { useEffect } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { PropTypes } from 'prop-types';
-import loadTodos from '../../Redux/actions/toDoActionCreators';
+import loadTodos, { createNewTask, deleteTask } from '../../Redux/actions/toDoActionCreators';
 import './index.scss';
 
 function MyLists({ cards, actions }) {
+  const [taskName, setTaskName] = useState('');
+
+  function createTaskCleanInputs(cardName) {
+    actions.createNewTask(cardName, taskName);
+    setTaskName('');
+  }
+
+  function percentageDone(totalTasks, doneTasks) {
+    return (doneTasks / totalTasks) * 100;
+  }
+
   useEffect(() => {
     actions.loadTodos();
   }, []);
@@ -25,23 +37,53 @@ function MyLists({ cards, actions }) {
               <div className={`list__container ${card.color}`}>
                 <div className="list__title">
                   <h3>{card.name}</h3>
+                  <div className="tasks__progress">
+                    <label htmlFor="file">Done: </label>
+                    <progress id="file" value={percentageDone(card.tasks.length, card.done)} max="100" />
+                  </div>
                 </div>
-                <ul className="blue2">
-                  {
-                      card && card.tasks.map((task) => (
-                        <li>
-                          <input
-                            id={task.taskName}
-                            value={task.taskName}
-                            type="checkbox"
-                          />
-                          <label htmlFor={task.taskName}>
-                            {task.taskName}
-                          </label>
-                        </li>
-                      ))
+                <div className="list__content">
+
+                  <ul className="blue2">
+                    {
+                    card && card.tasks.map((task) => (
+                      <li>
+                        <div>
+                          <div className="check__icon">
+                            {
+                            task.done
+                              ? <i className="fas fa-check" />
+                              : <div />
+                          }
+                          </div>
+                          <button type="button">
+                            <p>{task.taskName}</p>
+                          </button>
+                        </div>
+                        <button type="button" onClick={() => actions.deleteTask(card.name, task.taskName)}>
+                          <i className="fas fa-times" />
+                        </button>
+                      </li>
+                    ))
                     }
-                </ul>
+                  </ul>
+                  <div className="new-task__container">
+                    <input
+                      type="text"
+                      placeholder="New task"
+                      onChange={(event) => setTaskName(event.target.value)}
+                      value={taskName}
+                    />
+                    <button
+                      className="blue"
+                      type="button"
+                      onClick={() => createTaskCleanInputs(card.name)}
+                    >
+                      Add
+
+                    </button>
+                  </div>
+                </div>
               </div>
             ))
         }
@@ -53,7 +95,9 @@ function MyLists({ cards, actions }) {
 MyLists.propTypes = {
   cards: PropTypes.shape([]).isRequired,
   actions: PropTypes.shape({
-    loadTodos: PropTypes.func.isRequired
+    loadTodos: PropTypes.func.isRequired,
+    createNewTask: PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired
   }).isRequired
 };
 
@@ -65,7 +109,7 @@ function mapStateToProps({ cards }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ loadTodos }, dispatch)
+    actions: bindActionCreators({ loadTodos, createNewTask, deleteTask }, dispatch)
   };
 }
 

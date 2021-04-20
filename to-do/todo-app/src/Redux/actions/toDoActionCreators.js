@@ -13,11 +13,22 @@ export function loadCard(cardName) {
   };
 }
 
-export function createNewTask(card, name, description) {
-  const newTask = { cardName: card, name, description };
+export function createNewTask(card, name) {
+  const newTask = { cardName: card, name };
 
   return {
     type: toDoActionTypes.CREATE_TASK,
     data: newTask
+  };
+}
+
+export function deleteTask(card, task) {
+  // eslint-disable-next-line no-console
+  console.log(card, task);
+  // eslint-disable-next-line no-debugger
+  debugger;
+  return {
+    type: toDoActionTypes.DELETE_TASK,
+    data: { card, task }
   };
 }

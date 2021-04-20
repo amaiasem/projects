@@ -4,6 +4,38 @@
 //Text
 $text-font:'Roboto', sans-serif;
 
+
+//Bootstrap
+$theme-colors: (
+    "info": tomato,
+    "danger": teal,
+    "primary": $darkBlue,
+);
+
+//Theme colors
+.blue { 
+   background-color: $lightBlue;
+    color: $darklightBlue
+};
+.yellow { 
+    background-color: $yellow;
+    color: $darkyellow
+};
+.purple { 
+    background-color: $purple;
+    color: $darkpurple
+};
+.red {
+    background-color: $red;
+    color: $darkred
+};
+.new { 
+    color: $lightgrey;
+    border: 2px dashed $lightgrey;
+    box-shadow: 5px 5px $lightgrey;
+}
+
+
 // Mixins
 
 @mixin displayAllcenter {
@@ -32,3 +64,5 @@ $text-font:'Roboto', sans-serif;
     background-color: $background;
     color: $color;
 }
+
+@import "~bootstrap/scss/bootstrap";
