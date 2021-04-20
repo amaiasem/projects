@@ -96,12 +96,20 @@
 
                         div {
                             @include display(row, flex-start, center);
-    
-                            label{
-                                cursor: pointer;
+                            
+                            .check__icon{
+                                width: 20px;
+
+                                i{
+                                    font-size: 12px;
+                                }
+                            }
+
+                            p{
                                 margin-left: 5px;
                                 margin-bottom: 0;
-                                @include text(15px, $lightgrey, 400)
+                                max-width: 250px;
+                                @include text(15px, $lightgrey, 400);
                             }
                         }
 

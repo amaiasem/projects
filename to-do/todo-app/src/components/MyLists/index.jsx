@@ -38,8 +38,8 @@ function MyLists({ cards, actions }) {
                 <div className="list__title">
                   <h3>{card.name}</h3>
                   <div className="tasks__progress">
-                    <label htmlFor="file">Done:</label>
-                    <progress id="file" value={percentageDone(card.tasks.length, 1)} max="100" />
+                    <label htmlFor="file">Done: </label>
+                    <progress id="file" value={percentageDone(card.tasks.length, card.done)} max="100" />
                   </div>
                 </div>
                 <div className="list__content">
@@ -49,14 +49,16 @@ function MyLists({ cards, actions }) {
                     card && card.tasks.map((task) => (
                       <li>
                         <div>
-                          <input
-                            id={task.taskName}
-                            value={task.taskName}
-                            type="checkbox"
-                          />
-                          <label htmlFor={task.taskName}>
-                            {task.taskName}
-                          </label>
+                          <div className="check__icon">
+                            {
+                            task.done
+                              ? <i className="fas fa-check" />
+                              : <div />
+                          }
+                          </div>
+                          <button type="button">
+                            <p>{task.taskName}</p>
+                          </button>
                         </div>
                         <button type="button" onClick={() => actions.deleteTask(card.name, task.taskName)}>
                           <i className="fas fa-times" />
