@@ -1,8 +1,13 @@
+import axios from 'axios';
 import toDoActionTypes from './toDoActionTypes';
 
 export default function loadTodos() {
-  return {
-    type: toDoActionTypes.LOAD_TODOS
+  return async function fetchInfo(dispatch) {
+    const { data } = await axios.get('http://localhost:3000/todo-cards');
+    dispatch({
+      type: toDoActionTypes.LOAD_TODOS,
+      data
+    });
   };
 }
 
