@@ -9,7 +9,7 @@ export default function todoReducer(state = {}, actions) {
 
   switch (actions.type) {
     case toDoActionTypes.LOAD_TODOS:
-      return state;
+      return { ...state, cards: actions.data };
     case toDoActionTypes.LOAD_CARD:
       selectedCard = state.cards.find((card) => card.name === actions.data);
       return { ...state, card: selectedCard };
