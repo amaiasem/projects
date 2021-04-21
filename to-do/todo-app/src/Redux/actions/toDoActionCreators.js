@@ -23,12 +23,15 @@ export function createNewTask(card, name) {
 }
 
 export function deleteTask(card, task) {
-  // eslint-disable-next-line no-console
-  console.log(card, task);
-  // eslint-disable-next-line no-debugger
-  debugger;
   return {
     type: toDoActionTypes.DELETE_TASK,
+    data: { card, task }
+  };
+}
+
+export function checkTask(card, task) {
+  return {
+    type: toDoActionTypes.CHECK_TASK,
     data: { card, task }
   };
 }
