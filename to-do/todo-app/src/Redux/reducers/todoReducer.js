@@ -2,8 +2,6 @@
 import toDoActionTypes from '../actions/toDoActionTypes';
 
 export default function todoReducer(state = {}, actions) {
-  // eslint-disable-next-line no-debugger
-  debugger;
   let selectedCard = [];
   let tasks = [];
   let notSelectedCards = [];
@@ -19,7 +17,7 @@ export default function todoReducer(state = {}, actions) {
       newState = { ...state };
       selectedCard = newState.cards.find((card) => card.name === actions.data.cardName);
       notSelectedCards = newState.cards.filter((card) => card.name !== actions.data.cardName);
-      newState = { cards: [...notSelectedCards, selectedCard = { ...selectedCard, tasks: [...selectedCard.tasks, { taskName: actions.data.name }] }], card: selectedCard };
+      newState = { cards: [...notSelectedCards, selectedCard = { ...selectedCard, tasks: [...selectedCard.tasks, { taskName: actions.data.name, done: false }] }], card: selectedCard };
       return newState;
     case toDoActionTypes.DELETE_TASK:
       newState = { ...state };
@@ -27,9 +25,14 @@ export default function todoReducer(state = {}, actions) {
       tasks = selectedCard.tasks.filter((task) => task.taskName !== actions.data.task);
       notSelectedCards = newState.cards.filter((card) => card.name !== actions.data.card);
       newState = { cards: [...notSelectedCards, selectedCard = { ...selectedCard, tasks }] };
-      // eslint-disable-next-line no-console
-      console.log(newState);
       return newState;
+      // case toDoActionTypes.CHECK_TASK:
+      //  newState = { ...state };
+      //  selectedCard = newState.cards.filter((card) => card.name === actions.data.card);
+      //  selectedCard.done = actions.data.task.done ? selectedCard.done -= 1 : selectedCard.done += 1;
+      //  tasks = selectedCard.taks.map((task) => {
+
+    //  return state;
     default:
       return state;
   }
