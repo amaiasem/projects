@@ -26,4 +26,23 @@ function createCard(req, res) {
   });
 }
 
-module.exports = { getAllCards, createCard };
+function createTask(req, res) {
+  const task = req.body;
+  const id = req.params.card;
+
+  Card.findByIdAndUpdate(
+    id,
+    { $push: { tasks: task } }, { new: true },
+    (error, updatedCard) => {
+      if (error) {
+        res.status(500);
+        res.send('Could not add new task');
+      } else {
+        res.json(updatedCard);
+        console.log(updatedCard);
+      }
+    }
+  );
+}
+
+module.exports = { getAllCards, createCard, createTask };

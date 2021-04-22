@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
 import toDoActionTypes from '../actions/toDoActionTypes';
 
@@ -14,11 +15,15 @@ export default function todoReducer(state = {}, actions) {
       selectedCard = state.cards.find((card) => card.name === actions.data);
       return { ...state, card: selectedCard };
     case toDoActionTypes.CREATE_TASK:
-      newState = { ...state };
-      selectedCard = newState.cards.find((card) => card.name === actions.data.cardName);
-      notSelectedCards = newState.cards.filter((card) => card.name !== actions.data.cardName);
-      newState = { cards: [...notSelectedCards, selectedCard = { ...selectedCard, tasks: [...selectedCard.tasks, { taskName: actions.data.name, done: false }] }], card: selectedCard };
-      return newState;
+      return {
+        ...state,
+        cards: state.cards.map((card) => {
+          if (card._id === actions.data._id) {
+            return actions.data;
+          }
+          return card;
+        })
+      };
     case toDoActionTypes.DELETE_TASK:
       newState = { ...state };
       selectedCard = newState.cards.find((card) => card.name === actions.data.card);

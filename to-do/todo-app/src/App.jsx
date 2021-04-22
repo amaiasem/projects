@@ -4,9 +4,6 @@ import {
   BrowserRouter, Route, Switch, Link
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Cards from './components/Cards';
-import CardDetails from './components/CardDetail';
-import NewTask from './components/NewTask';
 import MyLists from './components/MyLists';
 import store from './Redux/stores/configureStore';
 
@@ -15,10 +12,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={Cards} />
-          <Route path="/card-details/:name" exact component={CardDetails} />
-          <Route path="/my-lists" exact component={MyLists} />
-          <Route path="/card-details/:name/new-task" exact component={NewTask} />
+          <Route path="/" exact component={MyLists} />
           <Route>
             <h2>404. Page not found!</h2>
             <Link to="/">Got to Dashboard</Link>

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
@@ -9,8 +10,8 @@ import './index.scss';
 function MyLists({ cards, actions }) {
   const [taskName, setTaskName] = useState('');
 
-  function createTaskCleanInputs(cardName) {
-    actions.createNewTask(cardName, taskName);
+  function createTaskCleanInputs(cardID) {
+    actions.createNewTask(cardID, taskName);
     setTaskName('');
   }
 
@@ -19,6 +20,8 @@ function MyLists({ cards, actions }) {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line no-debugger
+    debugger;
     actions.loadTodos();
   }, []);
 
@@ -75,9 +78,8 @@ function MyLists({ cards, actions }) {
                       value={taskName}
                     />
                     <button
-                      className="blue"
                       type="button"
-                      onClick={() => createTaskCleanInputs(card.name)}
+                      onClick={() => createTaskCleanInputs(card._id)}
                     >
                       Add
 

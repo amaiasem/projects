@@ -1,6 +1,7 @@
 const express = require('express');
 const debug = require('debug');
 const morgan = require('morgan');
+const cors = require('cors');
 const { connect } = require('mongoose');
 
 const cardsRouter = require('./src/router/cardsRouter');
@@ -13,6 +14,7 @@ const { DDBB } = process.env;
 
 connect(DDBB, { useNewUrlParser: true, useUnifiedTopology: true });
 
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

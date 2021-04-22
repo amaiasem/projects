@@ -19,11 +19,19 @@ export function loadCard(cardName) {
 }
 
 export function createNewTask(card, name) {
-  const newTask = { cardName: card, name };
+  return async (dispatch) => {
+    const { data } = await axios.put(`http://localhost:3000/todo-cards/card/${card}`, { taskName: name, done: false });
 
-  return {
-    type: toDoActionTypes.CREATE_TASK,
-    data: newTask
+    if (data === 'Could not add new task') {
+      dispatch({
+        type: toDoActionTypes.CREATE_TASK
+      });
+    } else {
+      dispatch({
+        type: toDoActionTypes.CREATE_TASK,
+        data
+      });
+    }
   };
 }
 

@@ -9,6 +9,10 @@ function cardsRouter() {
     .get(cardsController.getAllCards)
     .post(cardsController.createCard);
 
+  router
+    .route('/card/:card')
+    .put(cardsController.createTask);
+
   return router;
 }
 
