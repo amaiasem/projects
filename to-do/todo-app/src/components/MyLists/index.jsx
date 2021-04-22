@@ -11,8 +11,6 @@ function MyLists({ cards, actions }) {
   const [taskName, setTaskName] = useState('');
 
   function createTaskCleanInputs(cardID) {
-    // eslint-disable-next-line no-debugger
-    debugger;
     actions.createNewTask(cardID, taskName);
     setTaskName('');
   }

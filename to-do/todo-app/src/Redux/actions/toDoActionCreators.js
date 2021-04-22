@@ -21,10 +21,6 @@ export function loadCard(cardName) {
 export function createNewTask(card, name) {
   return async (dispatch) => {
     const { data } = await axios.put(`http://localhost:3000/todo-cards/card/${card}`, { taskName: name, done: false });
-    // eslint-disable-next-line no-debugger
-    debugger;
-    // eslint-disable-next-line no-console
-    console.log(`Axios data: ${data}`);
 
     if (data === 'Could not add new task') {
       dispatch({
