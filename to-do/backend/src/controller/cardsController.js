@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const Card = require('../models/cardModel');
 
 function getAllCards(req, res) {
@@ -26,4 +27,26 @@ function createCard(req, res) {
   });
 }
 
-module.exports = { getAllCards, createCard };
+function createTask(req, res) {
+  const task = req.body;
+  const id = req.params.card;
+  // eslint-disable-next-line no-console
+  console.log(`ID ${id}`);
+  console.log(`Request ${req.body.taskName}`);
+
+  Card.findByIdAndUpdate(
+    id,
+    { $push: { tasks: task } }, { new: true },
+    (error, uppdatedCard) => {
+      if (error) {
+        res.status(500);
+        res.send(error);
+        console.log(error);
+      } else {
+        res.json(uppdatedCard);
+      }
+    }
+  );
+}
+
+module.exports = { getAllCards, createCard, createTask };
