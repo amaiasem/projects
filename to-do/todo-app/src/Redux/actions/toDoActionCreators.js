@@ -36,9 +36,19 @@ export function createNewTask(card, name) {
 }
 
 export function deleteTask(card, task) {
-  return {
-    type: toDoActionTypes.DELETE_TASK,
-    data: { card, task }
+  return async (dispatch) => {
+    const { data } = await axios.put(`http://localhost:3000/todo-cards/${card}/tasks/${task}`);
+
+    if (data === 'Could not delete the task') {
+      dispatch({
+        type: toDoActionTypes.DELETE_TASK
+      });
+    } else {
+      dispatch({
+        type: toDoActionTypes.DELETE_TASK,
+        data
+      });
+    }
   };
 }
 
