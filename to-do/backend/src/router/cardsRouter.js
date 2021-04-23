@@ -13,6 +13,10 @@ function cardsRouter() {
     .route('/card/:card')
     .put(cardsController.createTask);
 
+  router
+    .route('/:card/tasks/:taskID')
+    .put(cardsController.deleteTask);
+
   return router;
 }
 

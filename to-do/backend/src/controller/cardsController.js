@@ -39,10 +39,30 @@ function createTask(req, res) {
         res.send('Could not add new task');
       } else {
         res.json(updatedCard);
-        console.log(updatedCard);
       }
     }
   );
 }
 
-module.exports = { getAllCards, createCard, createTask };
+function deleteTask(req, res) {
+  const { card } = req.params;
+  const { taskID } = req.params;
+
+  Card.findByIdAndUpdate(
+    card,
+    { $pull: { tasks: { _id: taskID } } },
+    { new: true },
+    (error, updatedCard) => {
+      if (error) {
+        res.status(500);
+        res.send('Could not delete the task');
+      } else {
+        res.json(updatedCard);
+      }
+    }
+  );
+}
+
+module.exports = {
+  getAllCards, createCard, createTask, deleteTask
+};

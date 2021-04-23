@@ -20,8 +20,6 @@ function MyLists({ cards, actions }) {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line no-debugger
-    debugger;
     actions.loadTodos();
   }, []);
 
@@ -63,7 +61,7 @@ function MyLists({ cards, actions }) {
                             <p>{task.taskName}</p>
                           </button>
                         </div>
-                        <button type="button" onClick={() => actions.deleteTask(card.name, task.taskName)}>
+                        <button type="button" onClick={() => actions.deleteTask(card._id, task._id)}>
                           <i className="fas fa-times" />
                         </button>
                       </li>
