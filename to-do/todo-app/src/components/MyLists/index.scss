@@ -99,6 +99,9 @@
                             
                             .check__icon{
                                 width: 20px;
+                                height: 20px;
+                                @include displayAllcenter;
+                                border: 1px solid $lightgrey;
 
                                 i{
                                     font-size: 12px;
@@ -135,6 +138,7 @@
                         background-color: $black;
                         color: $lighterDarkBlue;
                         padding-left: 10px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset
                     }
 
                     button {
@@ -142,9 +146,16 @@
                         cursor: pointer;
                         width: 20%;
                         text-align: center;
+                        color: $black;
                         border-radius: 0 5px 5px 0;
                         background-color: $lighterDarkBlue;
                         font-weight: 700;
+                        box-shadow: 0 2px 5px rgba(143, 143, 143, 0.25) inset;
+
+                        &:hover{
+                            box-shadow: 0 2px 6px rgba(17, 17, 17, 0.25) inset;
+                        }
+
                     }
                 }
             }
