@@ -52,9 +52,19 @@ export function deleteTask(card, task) {
   };
 }
 
-export function checkTask(card, task) {
-  return {
-    type: toDoActionTypes.CHECK_TASK,
-    data: { card, task }
+export function checkTask(cardID, task) {
+  return async (dispatch) => {
+    const { data } = await axios.put(`http://localhost:3000/todo-cards/${cardID}/update-task`, task);
+
+    if (data === 'Could not update the task') {
+      dispatch({
+        type: toDoActionTypes.CHECK_TASK
+      });
+    } else {
+      dispatch({
+        type: toDoActionTypes.CHECK_TASK,
+        data
+      });
+    }
   };
 }
