@@ -7,7 +7,8 @@ function cardsRouter() {
   router
     .route('/')
     .get(cardsController.getAllCards)
-    .post(cardsController.createCard);
+    .post(cardsController.createCard)
+    .put(cardsController.updateCard);
 
   router
     .route('/card/:card')

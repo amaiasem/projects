@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { PropTypes } from 'prop-types';
-import loadTodos, { createNewTask, deleteTask, checkTask } from '../../Redux/actions/toDoActionCreators';
+import loadTodos, {
+  createNewTask, deleteTask, checkTask, updateCardColor
+} from '../../Redux/actions/toDoActionCreators';
 import './index.scss';
 
 function MyLists({ cards, actions }) {
@@ -54,10 +56,30 @@ function MyLists({ cards, actions }) {
                       <div className="color__menu">
                         <p>Change color:</p>
                         <div>
-                          <button className="color--change blue" type="button" aria-label="save-color" />
-                          <button className="color--change yellow" type="button" aria-label="save-color" />
-                          <button className="color--change red" type="button" aria-label="save-color" />
-                          <button className="color--change purple" type="button" aria-label="save-color" />
+                          <button
+                            className="color--change blue"
+                            type="button"
+                            aria-label="save-color"
+                            onClick={() => actions.updateCardColor(card._id, 'blue')}
+                          />
+                          <button
+                            className="color--change yellow"
+                            type="button"
+                            aria-label="save-color"
+                            onClick={() => actions.updateCardColor(card._id, 'yellow')}
+                          />
+                          <button
+                            className="color--change red"
+                            type="button"
+                            aria-label="save-color"
+                            onClick={() => actions.updateCardColor(card._id, 'red')}
+                          />
+                          <button
+                            className="color--change purple"
+                            type="button"
+                            aria-label="save-color"
+                            onClick={() => actions.updateCardColor(card._id, 'purple')}
+                          />
                         </div>
                       </div>
                     </div>
@@ -120,7 +142,8 @@ MyLists.propTypes = {
     loadTodos: PropTypes.func.isRequired,
     createNewTask: PropTypes.func.isRequired,
     deleteTask: PropTypes.func.isRequired,
-    checkTask: PropTypes.func.isRequired
+    checkTask: PropTypes.func.isRequired,
+    updateCardColor: PropTypes.func.isRequired
   }).isRequired
 };
 
@@ -133,7 +156,7 @@ function mapStateToProps({ cards }) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      loadTodos, createNewTask, deleteTask, checkTask
+      loadTodos, createNewTask, deleteTask, checkTask, updateCardColor
     }, dispatch)
   };
 }
