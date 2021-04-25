@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { PropTypes } from 'prop-types';
-import loadTodos, { createNewTask, deleteTask } from '../../Redux/actions/toDoActionCreators';
+import loadTodos, { createNewTask, deleteTask, checkTask } from '../../Redux/actions/toDoActionCreators';
 import './index.scss';
 
 function MyLists({ cards, actions }) {
@@ -17,6 +17,11 @@ function MyLists({ cards, actions }) {
 
   function percentageDone(totalTasks, doneTasks) {
     return (doneTasks / totalTasks) * 100;
+  }
+
+  function updateTask(cardID, selectedTask) {
+    const updateDoneTask = { ...selectedTask, done: !selectedTask.done };
+    actions.checkTask(cardID, updateDoneTask);
   }
 
   useEffect(() => {
@@ -50,16 +55,14 @@ function MyLists({ cards, actions }) {
                     card && card.tasks.map((task) => (
                       <li>
                         <div>
-                          <div className="check__icon">
+                          <button type="button" className="check__icon" onClick={() => updateTask(card._id, task)}>
                             {
                             task.done
                               ? <i className="fas fa-check" />
                               : <div />
                           }
-                          </div>
-                          <button type="button">
-                            <p>{task.taskName}</p>
                           </button>
+                          <p>{task.taskName}</p>
                         </div>
                         <button type="button" onClick={() => actions.deleteTask(card._id, task._id)}>
                           <i className="fas fa-times" />
@@ -97,7 +100,8 @@ MyLists.propTypes = {
   actions: PropTypes.shape({
     loadTodos: PropTypes.func.isRequired,
     createNewTask: PropTypes.func.isRequired,
-    deleteTask: PropTypes.func.isRequired
+    deleteTask: PropTypes.func.isRequired,
+    checkTask: PropTypes.func.isRequired
   }).isRequired
 };
 
@@ -109,7 +113,9 @@ function mapStateToProps({ cards }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ loadTodos, createNewTask, deleteTask }, dispatch)
+    actions: bindActionCreators({
+      loadTodos, createNewTask, deleteTask, checkTask
+    }, dispatch)
   };
 }
 

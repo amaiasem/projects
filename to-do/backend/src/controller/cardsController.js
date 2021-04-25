@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const Card = require('../models/cardModel');
 
 function getAllCards(req, res) {
@@ -63,6 +64,26 @@ function deleteTask(req, res) {
   );
 }
 
+function updateTask(req, res) {
+  const { card } = req.params;
+  const task = req.body;
+
+  Card.findOneAndUpdate({
+    _id: card,
+    tasks: { $elemMatch: { _id: task._id } }
+  },
+  { $set: { 'tasks.$.done': task.done } },
+  { new: true },
+  (error, updatedCard) => {
+    if (error) {
+      res.status(500);
+      res.send('Could not update the task');
+    } else {
+      res.json(updatedCard);
+    }
+  });
+}
+
 module.exports = {
-  getAllCards, createCard, createTask, deleteTask
+  getAllCards, createCard, createTask, deleteTask, updateTask
 };

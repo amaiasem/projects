@@ -21,6 +21,10 @@ export default function todoReducer(state = {}, actions) {
       return {
         ...state, cards: state.cards.map((card) => ((card._id === actions.data._id) ? actions.data : card))
       };
+    case toDoActionTypes.CHECK_TASK:
+      return {
+        ...state, cards: state.cards.map((card) => ((card._id === actions.data._id) ? actions.data : card))
+      };
     default:
       return state;
   }
