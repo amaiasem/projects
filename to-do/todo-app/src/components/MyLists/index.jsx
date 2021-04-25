@@ -15,8 +15,11 @@ function MyLists({ cards, actions }) {
     setTaskName('');
   }
 
-  function percentageDone(totalTasks, doneTasks) {
-    return (doneTasks / totalTasks) * 100;
+  function percentageDone(tasks) {
+    let doneTasks = tasks.map((task) => (task.done ? 1 : 0));
+    doneTasks = doneTasks.reduce((acc, current) => acc + current);
+
+    return ((doneTasks / tasks.length) * 100).toFixed();
   }
 
   function updateTask(cardID, selectedTask) {
@@ -45,7 +48,8 @@ function MyLists({ cards, actions }) {
                   <h3>{card.name}</h3>
                   <div className="tasks__progress">
                     <label htmlFor="file">Done: </label>
-                    <progress id="file" value={percentageDone(card.tasks.length, card.done)} max="100" />
+                    <progress id="file" value={percentageDone(card.tasks)} max="100" />
+                    <p>{`${percentageDone(card.tasks)}%`}</p>
                   </div>
                 </div>
                 <div className="list__content">
