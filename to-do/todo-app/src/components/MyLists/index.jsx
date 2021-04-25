@@ -50,6 +50,17 @@ function MyLists({ cards, actions }) {
                     <button type="button" className="card__menu">
                       <i className="fas fa-bars" />
                     </button>
+                    <div className={`drop-down__menu ${card.color}`}>
+                      <div className="color__menu">
+                        <p>Change color:</p>
+                        <div>
+                          <button className="color--change blue" type="button" aria-label="save-color" />
+                          <button className="color--change yellow" type="button" aria-label="save-color" />
+                          <button className="color--change red" type="button" aria-label="save-color" />
+                          <button className="color--change purple" type="button" aria-label="save-color" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="tasks__progress">
                     <label htmlFor="file">Done: </label>
