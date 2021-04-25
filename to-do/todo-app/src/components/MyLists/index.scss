@@ -37,19 +37,91 @@
     
     .my-lists__container {
         font-family: $text-font;
-
+        
         .list__container{
             margin: 10px;
             border-radius: 5px;
+            position: relative;
             
-            .list__title{
+            .card__info{
                 width: 100%;
                 box-shadow: 0px 1px 5px $blackOpacity;
-    
-                h3 {
-                    font-size: 20px;
-                    text-align: center;
-                    margin: 5px 0;
+                
+                .card__title{
+                    @include display(row, center, center);
+
+                    h3 {
+                        font-size: 20px;
+                        text-align: center;
+                        margin: 5px 0;
+                    }
+
+                    .card__menu{
+                        all: unset;
+                        cursor: pointer;
+                        position: absolute;
+                        right: 20px;
+                        top: 8px;
+
+                        &:hover{
+                            color: $lighterDarkBlue;
+                        }
+                    }
+                    
+                    .card__menu:hover + .drop-down__menu{
+                        transform: scaleY(1);
+                    }
+
+                    .drop-down__menu{
+                        position: absolute;
+                        z-index: 1;
+                        top: 28px;
+                        right: 20px;
+                        height: 100px;
+                        width: 150px;
+                        border-radius: 5px;
+                        border: 2px solid $black;
+                        padding-left: 5px;
+                        padding-top: 5px;
+                        background-color: $darkBlue;
+                        @include display(column, flex-start, center);
+                        transform: scaleY(0);
+                        transform-origin: top;
+                        transition: 0.3s;
+                        
+                        &:hover{
+                            transform: scale(1);
+                        }
+
+                        .color__menu{
+                            @include display(column, flex-start, flex-start);
+
+                            p{
+                                font-size: 14px;
+                                margin-bottom: 5px;
+                            }
+
+                            .color--change{
+                                all: unset;
+                                cursor: pointer;
+                                background-color: black;
+                                width: 25px;
+                                height: 20px;
+                                margin-right: 5px;
+                                border-radius: 5px;
+                                border: 2px solid $darkBlue;
+
+                                &.blue{background-color: $lightBlue}
+                                &.yellow{background-color: $yellow}
+                                &.red{background-color: $red}
+                                &.purple{background-color: $purple}
+
+                                &:hover{
+                                    border: 2px solid $lightgrey;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 .tasks__progress{
@@ -73,7 +145,7 @@
                         &[value]::-webkit-progress-bar{
                             background-color: $lighterDarkBlue;
                             border-radius: 2px;
-                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+                            @include shadowInset();
                         }
                         
                         &[value]::-webkit-progress-value{
@@ -129,6 +201,10 @@
                         button {
                             all: unset;
                             cursor: pointer;
+
+                            &:hover{
+                                color: $lighterDarkBlue;
+                            }
                         }
 
                     }

@@ -44,8 +44,24 @@ function MyLists({ cards, actions }) {
         {
             cards && cards.map((card) => (
               <div className={`list__container ${card.color}`}>
-                <div className="list__title">
-                  <h3>{card.name}</h3>
+                <div className="card__info">
+                  <div className="card__title">
+                    <h3>{card.name}</h3>
+                    <button type="button" className="card__menu">
+                      <i className="fas fa-bars" />
+                    </button>
+                    <div className={`drop-down__menu ${card.color}`}>
+                      <div className="color__menu">
+                        <p>Change color:</p>
+                        <div>
+                          <button className="color--change blue" type="button" aria-label="save-color" />
+                          <button className="color--change yellow" type="button" aria-label="save-color" />
+                          <button className="color--change red" type="button" aria-label="save-color" />
+                          <button className="color--change purple" type="button" aria-label="save-color" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div className="tasks__progress">
                     <label htmlFor="file">Done: </label>
                     <progress id="file" value={percentageDone(card.tasks)} max="100" />
