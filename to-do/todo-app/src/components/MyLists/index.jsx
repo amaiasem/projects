@@ -87,7 +87,6 @@ function MyLists({ cards, actions }) {
                       onClick={() => createTaskCleanInputs(card._id)}
                     >
                       Add
-
                     </button>
                   </div>
                 </div>
