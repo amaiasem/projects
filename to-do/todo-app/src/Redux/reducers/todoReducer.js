@@ -11,6 +11,12 @@ export default function todoReducer(state = {}, actions) {
     case toDoActionTypes.LOAD_CARD:
       selectedCard = state.cards.find((card) => card.name === actions.data);
       return { ...state, card: selectedCard };
+    case toDoActionTypes.UPDATE_CARD:
+      return {
+        ...state,
+        cards: state.cards.map((card) => ((card._id === actions.data._id) ? actions.data : card))
+
+      };
     case toDoActionTypes.CREATE_TASK:
       return {
         ...state,
