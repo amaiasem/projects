@@ -27,6 +27,19 @@ function createCard(req, res) {
   });
 }
 
+async function updateCard(req, res) {
+  const id = req.body._id;
+  const toUpdate = req.body;
+
+  try {
+    const updatedCard = await Card.findByIdAndUpdate(id, toUpdate, { new: true }).exec();
+    res.json(updatedCard);
+  } catch (error) {
+    res.status(500);
+    res.send('Could not update the card');
+  }
+}
+
 function createTask(req, res) {
   const task = req.body;
   const id = req.params.card;
@@ -85,5 +98,5 @@ function updateTask(req, res) {
 }
 
 module.exports = {
-  getAllCards, createCard, createTask, deleteTask, updateTask
+  getAllCards, createCard, updateCard, createTask, deleteTask, updateTask
 };
