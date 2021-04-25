@@ -54,17 +54,19 @@
 
                 .tasks__progress{
 
-                    @include display(row, center, center);
+                    @include display(row, space-between, center);
+                    margin: 0 20px 0 20px;
 
                     label{
-                        margin: 0 10px 5px 0;
+                        margin-bottom: 5px;
                         font-weight: 500;
                     }
+
                     progress{
                         &[value]{
                             -webkit-appearance: none;
                             appearance: none;
-                            width: 250px;
+                            width: 220px;
                             height: 10px;
                         }
                         
@@ -79,6 +81,10 @@
                             background: $darkBlue;
                             
                         }  
+                    }
+
+                    p{
+                        margin-bottom: 5px;
                     }
                 }
             }
@@ -105,6 +111,10 @@
 
                                 i{
                                     font-size: 12px;
+                                }
+
+                                &:hover{
+                                    border: 1px solid $lighterDarkBlue;
                                 }
                             }
 
