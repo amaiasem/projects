@@ -29,6 +29,17 @@ export function updateCardColor(cardID, color) {
   };
 }
 
+export function updateCardName(cardID, name) {
+  const card = { _id: cardID, name };
+  return async (dispatch) => {
+    const { data } = await axios.put('http://localhost:3000/todo-cards', card);
+    dispatch({
+      type: toDoActionTypes.UPDATE_CARD,
+      data
+    });
+  };
+}
+
 export function createNewTask(card, name) {
   return async (dispatch) => {
     const { data } = await axios.put(`http://localhost:3000/todo-cards/card/${card}`, { taskName: name, done: false });

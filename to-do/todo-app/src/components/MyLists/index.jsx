@@ -5,16 +5,22 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { PropTypes } from 'prop-types';
 import loadTodos, {
-  createNewTask, deleteTask, checkTask, updateCardColor
+  createNewTask, deleteTask, checkTask, updateCardColor, updateCardName
 } from '../../Redux/actions/toDoActionCreators';
 import './index.scss';
 
 function MyLists({ cards, actions }) {
   const [taskName, setTaskName] = useState('');
+  const [cardName, setCardName] = useState('');
 
   function createTaskCleanInputs(cardID) {
     actions.createNewTask(cardID, taskName);
     setTaskName('');
+  }
+
+  function updateNameResetInput(cardID) {
+    actions.updateCardName(cardID, cardName);
+    setCardName('');
   }
 
   function percentageDone(tasks) {
@@ -81,6 +87,24 @@ function MyLists({ cards, actions }) {
                             onClick={() => actions.updateCardColor(card._id, 'purple')}
                           />
                         </div>
+                        <div className="card-name--change">
+                          <label htmlFor="card-name">Change card name:</label>
+                          <div>
+                            <input
+                              type="text"
+                              placeholder={card.name}
+                              onChange={(event) => setCardName(event.target.value)}
+                              value={cardName}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => updateNameResetInput(card._id)}
+                            >
+                              OK
+
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -143,7 +167,8 @@ MyLists.propTypes = {
     createNewTask: PropTypes.func.isRequired,
     deleteTask: PropTypes.func.isRequired,
     checkTask: PropTypes.func.isRequired,
-    updateCardColor: PropTypes.func.isRequired
+    updateCardColor: PropTypes.func.isRequired,
+    updateCardName: PropTypes.func.isRequired
   }).isRequired
 };
 
@@ -156,7 +181,7 @@ function mapStateToProps({ cards }) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      loadTodos, createNewTask, deleteTask, checkTask, updateCardColor
+      loadTodos, createNewTask, deleteTask, checkTask, updateCardColor, updateCardName
     }, dispatch)
   };
 }
