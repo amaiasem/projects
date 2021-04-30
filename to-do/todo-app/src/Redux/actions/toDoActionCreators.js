@@ -18,6 +18,25 @@ export function loadCard(cardName) {
   };
 }
 
+export function createCard(newCard) {
+  // eslint-disable-next-line no-debugger
+  debugger;
+  return async (dispatch) => {
+    const { data } = await axios.post('http://localhost:3000/todo-cards', newCard);
+
+    if (data === 'Could not create a new Card') {
+      dispatch({
+        type: toDoActionTypes.CREATE_CARD
+      });
+    } else {
+      dispatch({
+        type: toDoActionTypes.CREATE_CARD,
+        data
+      });
+    }
+  };
+}
+
 export function updateCardColor(cardID, color) {
   const card = { _id: cardID, color };
   return async (dispatch) => {

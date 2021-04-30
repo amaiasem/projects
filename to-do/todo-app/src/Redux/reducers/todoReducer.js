@@ -4,6 +4,8 @@ import toDoActionTypes from '../actions/toDoActionTypes';
 
 export default function todoReducer(state = {}, actions) {
   let selectedCard = [];
+  // eslint-disable-next-line no-debugger
+  debugger;
 
   switch (actions.type) {
     case toDoActionTypes.LOAD_TODOS:
@@ -11,6 +13,8 @@ export default function todoReducer(state = {}, actions) {
     case toDoActionTypes.LOAD_CARD:
       selectedCard = state.cards.find((card) => card.name === actions.data);
       return { ...state, card: selectedCard };
+    case toDoActionTypes.CREATE_CARD:
+      return { ...state, cards: [...state.cards, actions.data] };
     case toDoActionTypes.UPDATE_CARD:
       return {
         ...state,

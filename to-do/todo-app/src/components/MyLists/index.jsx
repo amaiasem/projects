@@ -5,8 +5,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { PropTypes } from 'prop-types';
 import loadTodos, {
-  createNewTask, deleteTask, checkTask, updateCardColor, updateCardName
+  createNewTask,
+  deleteTask,
+  checkTask,
+  updateCardColor,
+  updateCardName,
+  createCard
 } from '../../Redux/actions/toDoActionCreators';
+import newCard from '../../constants/newCard';
 import './index.scss';
 
 function MyLists({ cards, actions }) {
@@ -24,10 +30,13 @@ function MyLists({ cards, actions }) {
   }
 
   function percentageDone(tasks) {
-    let doneTasks = tasks.map((task) => (task.done ? 1 : 0));
-    doneTasks = doneTasks.reduce((acc, current) => acc + current);
+    if (tasks.length > 0) {
+      let doneTasks = tasks.map((task) => (task.done ? 1 : 0));
+      doneTasks = doneTasks.reduce((acc, current) => acc + current);
 
-    return ((doneTasks / tasks.length) * 100).toFixed();
+      return ((doneTasks / tasks.length) * 100).toFixed();
+    }
+    return 0;
   }
 
   function updateTask(cardID, selectedTask) {
@@ -43,7 +52,14 @@ function MyLists({ cards, actions }) {
     <section className="todo">
       <header>
         <h1>My Lists</h1>
-        <button className="card--create" type="button">New card +</button>
+        <button
+          className="card--create"
+          type="button"
+          onClick={() => actions.createCard(newCard)}
+        >
+          New card +
+
+        </button>
         <div className="profile__container">
           <p>Logout</p>
           <div className="profile-picture" />
@@ -116,28 +132,38 @@ function MyLists({ cards, actions }) {
                   </div>
                 </div>
                 <div className="list__content">
-
-                  <ul>
-                    {
-                    card && card.tasks.map((task) => (
-                      <li>
-                        <div>
-                          <button type="button" className="check__icon" onClick={() => updateTask(card._id, task)}>
-                            {
-                            task.done
-                              ? <i className="fas fa-check" />
-                              : <div />
+                  {
+                  card.tasks.length > 0
+                    ? (
+                      <ul>
+                        {
+                      card && card.tasks.map((task) => (
+                        <li>
+                          <div>
+                            <button type="button" className="check__icon" onClick={() => updateTask(card._id, task)}>
+                              {
+                              task.done
+                                ? <i className="fas fa-check" />
+                                : <div />
                           }
+                            </button>
+                            <p className={task.done ? 'task done' : 'task'}>{task.taskName}</p>
+                          </div>
+                          <button type="button" onClick={() => actions.deleteTask(card._id, task._id)}>
+                            <i className="fas fa-times" />
                           </button>
-                          <p className={task.done ? 'task done' : 'task'}>{task.taskName}</p>
-                        </div>
-                        <button type="button" onClick={() => actions.deleteTask(card._id, task._id)}>
-                          <i className="fas fa-times" />
-                        </button>
-                      </li>
-                    ))
+                        </li>
+                      ))
                     }
-                  </ul>
+                      </ul>
+                    )
+                    : (
+                      <p>
+                        This is your new card. Please add a new task to your list.
+                        You can also change the color and name of the card.
+                      </p>
+                    )
+                  }
                   <div className="new-task__container">
                     <input
                       type="text"
@@ -165,6 +191,7 @@ MyLists.propTypes = {
   cards: PropTypes.shape([]).isRequired,
   actions: PropTypes.shape({
     loadTodos: PropTypes.func.isRequired,
+    createCard: PropTypes.func.isRequired,
     createNewTask: PropTypes.func.isRequired,
     deleteTask: PropTypes.func.isRequired,
     checkTask: PropTypes.func.isRequired,
@@ -182,7 +209,13 @@ function mapStateToProps({ cards }) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      loadTodos, createNewTask, deleteTask, checkTask, updateCardColor, updateCardName
+      loadTodos,
+      createNewTask,
+      deleteTask,
+      checkTask,
+      updateCardColor,
+      updateCardName,
+      createCard
     }, dispatch)
   };
 }
