@@ -116,7 +116,7 @@ function MyLists({ cards, actions }) {
                 </div>
                 <div className="list__content">
 
-                  <ul className="blue2">
+                  <ul>
                     {
                     card && card.tasks.map((task) => (
                       <li>
@@ -128,7 +128,7 @@ function MyLists({ cards, actions }) {
                               : <div />
                           }
                           </button>
-                          <p>{task.taskName}</p>
+                          <p className={task.done ? 'task done' : 'task'}>{task.taskName}</p>
                         </div>
                         <button type="button" onClick={() => actions.deleteTask(card._id, task._id)}>
                           <i className="fas fa-times" />

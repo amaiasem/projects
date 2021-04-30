@@ -231,11 +231,16 @@
                                 }
                             }
 
-                            p{
+                            .task{
                                 margin-left: 5px;
                                 margin-bottom: 0;
                                 max-width: 250px;
                                 @include text(15px, $lightgrey, 400);
+                            }
+
+                            .done{
+                                text-decoration: line-through;
+                                color: $lighterDarkBlue;
                             }
                         }
 
