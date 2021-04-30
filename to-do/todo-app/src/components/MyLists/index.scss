@@ -16,6 +16,24 @@
             @include text(20px, $white, 400);
         }
 
+        .card--create{
+            all: unset;
+            cursor: pointer;
+            padding: 5px 10px;
+            text-align: center;
+            width: 25%;
+            color: $white;
+            font-size: 14px;
+            border-radius: 5px;
+            background-color: $lighterDarkBlue;
+            font-weight: 700;
+            box-shadow: 0 2px 5px rgba(143, 143, 143, 0.25) inset;
+        
+            &:hover{
+                box-shadow: 0 2px 6px rgba(17, 17, 17, 0.25) inset;
+            }
+        }
+
         .profile__container{
             @include display(row, flex-end, center);
 
@@ -144,20 +162,7 @@
                                 }
             
                                 button {
-                                    all: unset;
-                                    cursor: pointer;
-                                    width: 40px;
-                                    text-align: center;
-                                    color: $black;
-                                    font-size: 14px;
-                                    border-radius: 0 5px 5px 0;
-                                    background-color: $lighterDarkBlue;
-                                    font-weight: 700;
-                                    box-shadow: 0 2px 5px rgba(143, 143, 143, 0.25) inset;
-            
-                                    &:hover{
-                                        box-shadow: 0 2px 6px rgba(17, 17, 17, 0.25) inset;
-                                    }
+                                    @include button();
             
                                 }
                             }
@@ -274,20 +279,8 @@
                     }
 
                     button {
-                        all: unset;
-                        cursor: pointer;
-                        width: 20%;
-                        text-align: center;
-                        color: $black;
-                        border-radius: 0 5px 5px 0;
-                        background-color: $lighterDarkBlue;
-                        font-weight: 700;
-                        box-shadow: 0 2px 5px rgba(143, 143, 143, 0.25) inset;
-
-                        &:hover{
-                            box-shadow: 0 2px 6px rgba(17, 17, 17, 0.25) inset;
-                        }
-
+                        @include button();
+                        height: 24px;
                     }
                 }
             }

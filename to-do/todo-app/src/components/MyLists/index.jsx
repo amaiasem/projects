@@ -43,6 +43,7 @@ function MyLists({ cards, actions }) {
     <section className="todo">
       <header>
         <h1>My Lists</h1>
+        <button className="card--create" type="button">New card +</button>
         <div className="profile__container">
           <p>Logout</p>
           <div className="profile-picture" />
