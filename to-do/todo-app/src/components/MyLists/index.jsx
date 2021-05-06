@@ -19,9 +19,9 @@ function MyLists({ cards, actions }) {
   const [taskName, setTaskName] = useState('');
   const [cardName, setCardName] = useState('');
 
-  function createTaskCleanInputs(cardID) {
+  function createTaskCleanInputs(cardID, cardIndex) {
     actions.createNewTask(cardID, taskName);
-    setTaskName('');
+    document.querySelectorAll('.input__task')[cardIndex].value = 'New Task';
   }
 
   function updateNameResetInput(cardID) {
@@ -67,7 +67,7 @@ function MyLists({ cards, actions }) {
       </header>
       <div className="my-lists__container">
         {
-            cards && cards.map((card) => (
+            cards && cards.map((card, index) => (
               <div className={`list__container ${card.color}`}>
                 <div className="card__info">
                   <div className="card__title">
@@ -89,7 +89,9 @@ function MyLists({ cards, actions }) {
                             className="color--change yellow"
                             type="button"
                             aria-label="save-color"
-                            onClick={() => actions.updateCardColor(card._id, 'yellow')}
+                            onClick={() => {
+                              actions.updateCardColor(card._id, 'yellow');
+                            }}
                           />
                           <button
                             className="color--change red"
@@ -166,14 +168,14 @@ function MyLists({ cards, actions }) {
                   }
                   <div className="new-task__container">
                     <input
+                      className="input__task"
                       type="text"
                       placeholder="New task"
                       onChange={(event) => setTaskName(event.target.value)}
-                      value={taskName}
                     />
                     <button
                       type="button"
-                      onClick={() => createTaskCleanInputs(card._id)}
+                      onClick={() => createTaskCleanInputs(card._id, index)}
                     >
                       Add
                     </button>
