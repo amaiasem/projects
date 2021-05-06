@@ -21,7 +21,7 @@
             cursor: pointer;
             padding: 5px 10px;
             text-align: center;
-            width: 25%;
+            width: 20%;
             color: $white;
             font-size: 14px;
             border-radius: 5px;
@@ -302,9 +302,10 @@
 @media ( min-width: 600px){
 
     .my-lists__container {
-        @include display(row, flex-start, flex-start);
+        @include display(column, flex-start, center);
         flex-wrap: wrap;
         margin: 20px;
+        max-height: 1000px;
         
         .list__container{
             width: 350px;
