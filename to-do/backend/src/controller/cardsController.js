@@ -46,7 +46,7 @@ function deleteCard(req, res) {
   Card.findByIdAndDelete(id, (error) => {
     if (error) {
       res.status(500);
-      res.send('Error. Could not delte the card');
+      res.send('Error. Could not delete the card');
     } else {
       res.status(200);
       res.send('Card deleted!');
