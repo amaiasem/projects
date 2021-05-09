@@ -10,7 +10,8 @@ import loadTodos, {
   checkTask,
   updateCardColor,
   updateCardName,
-  createCard
+  createCard,
+  deleteCard
 } from '../../Redux/actions/toDoActionCreators';
 import newCard from '../../constants/newCard';
 import './index.scss';
@@ -106,25 +107,32 @@ function MyLists({ cards, actions }) {
                             onClick={() => actions.updateCardColor(card._id, 'purple')}
                           />
                         </div>
-                        <div className="card-name--change">
-                          <label htmlFor="card-name">Change card name:</label>
-                          <div>
-                            <input
-                              type="text"
-                              placeholder={card.name}
-                              onChange={(event) => setCardName(event.target.value)}
-                              value={cardName}
-                            />
-                            <button
-                              type="button"
-                              onClick={() => updateNameResetInput(card._id)}
-                            >
-                              OK
-
-                            </button>
-                          </div>
+                      </div>
+                      <div className="card-name--change">
+                        <label htmlFor="card-name">Change card name:</label>
+                        <div>
+                          <input
+                            type="text"
+                            placeholder={card.name}
+                            onChange={(event) => setCardName(event.target.value)}
+                            value={cardName}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => updateNameResetInput(card._id)}
+                          >
+                            OK
+                          </button>
                         </div>
                       </div>
+                      <button
+                        type="button"
+                        className="card--delete"
+                        onClick={() => actions.deleteCard(card._id)}
+                      >
+                        Delete card
+
+                      </button>
                     </div>
                   </div>
                   <div className="tasks__progress">
@@ -198,7 +206,8 @@ MyLists.propTypes = {
     deleteTask: PropTypes.func.isRequired,
     checkTask: PropTypes.func.isRequired,
     updateCardColor: PropTypes.func.isRequired,
-    updateCardName: PropTypes.func.isRequired
+    updateCardName: PropTypes.func.isRequired,
+    deleteCard: PropTypes.func.isRequired
   }).isRequired
 };
 
@@ -217,7 +226,8 @@ function mapDispatchToProps(dispatch) {
       checkTask,
       updateCardColor,
       updateCardName,
-      createCard
+      createCard,
+      deleteCard
     }, dispatch)
   };
 }
