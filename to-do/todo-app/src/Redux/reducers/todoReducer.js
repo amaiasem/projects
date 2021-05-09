@@ -4,8 +4,6 @@ import toDoActionTypes from '../actions/toDoActionTypes';
 
 export default function todoReducer(state = {}, actions) {
   let selectedCard = [];
-  // eslint-disable-next-line no-debugger
-  debugger;
 
   switch (actions.type) {
     case toDoActionTypes.LOAD_TODOS:
@@ -21,6 +19,8 @@ export default function todoReducer(state = {}, actions) {
         cards: state.cards.map((card) => ((card._id === actions.data._id) ? actions.data : card))
 
       };
+    case toDoActionTypes.DELETE_CARD:
+      return { ...state, cards: state.cards.filter((card) => card._id !== actions.data) };
     case toDoActionTypes.CREATE_TASK:
       return {
         ...state,

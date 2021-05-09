@@ -40,6 +40,20 @@ async function updateCard(req, res) {
   }
 }
 
+function deleteCard(req, res) {
+  const id = req.body._id;
+
+  Card.findByIdAndDelete(id, (error) => {
+    if (error) {
+      res.status(500);
+      res.send('Error. Could not delete the card');
+    } else {
+      res.status(200);
+      res.send('Card deleted!');
+    }
+  });
+}
+
 function createTask(req, res) {
   const task = req.body;
   const id = req.params.card;
@@ -98,5 +112,11 @@ function updateTask(req, res) {
 }
 
 module.exports = {
-  getAllCards, createCard, updateCard, createTask, deleteTask, updateTask
+  getAllCards,
+  createCard,
+  updateCard,
+  createTask,
+  deleteTask,
+  updateTask,
+  deleteCard
 };

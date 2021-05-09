@@ -19,8 +19,6 @@ export function loadCard(cardName) {
 }
 
 export function createCard(newCard) {
-  // eslint-disable-next-line no-debugger
-  debugger;
   return async (dispatch) => {
     const { data } = await axios.post('http://localhost:3000/todo-cards', newCard);
 
@@ -32,6 +30,23 @@ export function createCard(newCard) {
       dispatch({
         type: toDoActionTypes.CREATE_CARD,
         data
+      });
+    }
+  };
+}
+
+export function deleteCard(cardId) {
+  return async (dispatch) => {
+    const { data } = await axios.delete('http://localhost:3000/todo-cards', { _id: cardId });
+
+    if (data === 'Card deleted!') {
+      dispatch({
+        type: toDoActionTypes.DELETE_CARD,
+        data: cardId
+      });
+    } else {
+      dispatch({
+        type: toDoActionTypes.DELETE_CARD
       });
     }
   };

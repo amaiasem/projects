@@ -100,7 +100,7 @@
                         border: 2px solid $black;
                         padding: 8px;
                         background-color: $darkBlue;
-                        @include display(column, flex-start, center);
+                        @include display(column, flex-start, flex-start);
                         transform: scaleY(0);
                         transform-origin: top;
                         transition: 0.3s;
@@ -121,7 +121,7 @@
                                 all: unset;
                                 cursor: pointer;
                                 background-color: black;
-                                width: 25px;
+                                width: 30px;
                                 height: 20px;
                                 margin-right: 5px;
                                 border-radius: 5px;
@@ -139,7 +139,7 @@
                         }
 
                         .card-name--change{
-                            margin-top: 10px;
+                            margin-top: 5px;
 
                             label{
                                 font-size: 14px;
@@ -163,9 +163,16 @@
             
                                 button {
                                     @include button();
-            
+                                    border-radius: 0 5px 5px 0;
                                 }
                             }
+                        }
+
+                        .card--delete{
+                            @include button();
+                            width: 87%;
+                            border-radius: 5px;
+                            margin-top: 10px;
                         }
                     }
                 }
@@ -280,6 +287,7 @@
 
                     button {
                         @include button();
+                        border-radius: 0 5px 5px 0;
                         height: 24px;
                     }
                 }
