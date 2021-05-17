@@ -40,18 +40,16 @@ async function updateCard(req, res) {
   }
 }
 
-function deleteCard(req, res) {
+async function deleteCard(req, res) {
   const id = req.body._id;
 
-  Card.findByIdAndDelete(id, (error) => {
-    if (error) {
-      res.status(500);
-      res.send('Error. Could not delete the card');
-    } else {
-      res.status(200);
-      res.send('Card deleted!');
-    }
-  });
+  try {
+    const deletedCard = await Card.findByIdAndDelete(id).exec();
+    res.json(deletedCard);
+  } catch (error) {
+    res.status(500);
+    res.send('Could not delete the card');
+  }
 }
 
 function createTask(req, res) {
