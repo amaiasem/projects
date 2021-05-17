@@ -1,0 +1,21 @@
+@import './../../styles/global-styles.scss';
+
+.color--change{
+    all: unset;
+    cursor: pointer;
+    background-color: black;
+    width: 30px;
+    height: 20px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: 2px solid $darkBlue;
+
+    &.blue{background-color: $lightBlue}
+    &.yellow{background-color: $yellow}
+    &.red{background-color: $red}
+    &.purple{background-color: $purple}
+
+    &:hover{
+        border: 2px solid $lightgrey;
+    }
+}
