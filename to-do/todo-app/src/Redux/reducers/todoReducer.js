@@ -20,7 +20,7 @@ export default function todoReducer(state = {}, actions) {
 
       };
     case toDoActionTypes.DELETE_CARD:
-      return { ...state, cards: state.cards.filter((card) => card._id !== actions.data) };
+      return { ...state, cards: state.cards.filter((card) => card._id !== actions.data._id) };
     case toDoActionTypes.CREATE_TASK:
       return {
         ...state,

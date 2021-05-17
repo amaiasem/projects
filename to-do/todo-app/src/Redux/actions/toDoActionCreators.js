@@ -37,18 +37,11 @@ export function createCard(newCard) {
 
 export function deleteCard(cardId) {
   return async (dispatch) => {
-    const { data } = await axios.delete('http://localhost:3000/todo-cards', { _id: cardId });
-
-    if (data === 'Card deleted!') {
-      dispatch({
-        type: toDoActionTypes.DELETE_CARD,
-        data: cardId
-      });
-    } else {
-      dispatch({
-        type: toDoActionTypes.DELETE_CARD
-      });
-    }
+    const { data } = await axios.delete('http://localhost:3000/todo-cards', { data: { _id: cardId } });
+    dispatch({
+      type: toDoActionTypes.DELETE_CARD,
+      data
+    });
   };
 }
 
