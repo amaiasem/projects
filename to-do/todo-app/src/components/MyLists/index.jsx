@@ -14,6 +14,7 @@ import loadTodos, {
   deleteCard
 } from '../../Redux/actions/toDoActionCreators';
 import newCard from '../../constants/newCard';
+import UpdateColorButton from '../UpdateColorButton';
 import './index.scss';
 
 function MyLists({ cards, actions }) {
@@ -80,31 +81,25 @@ function MyLists({ cards, actions }) {
                       <div className="color__menu">
                         <p>Change color:</p>
                         <div>
-                          <button
-                            className="color--change blue"
-                            type="button"
-                            aria-label="save-color"
-                            onClick={() => actions.updateCardColor(card._id, 'blue')}
+                          <UpdateColorButton
+                            color="blue"
+                            cardID={card._id}
+                            onClick={actions.updateCardColor}
                           />
-                          <button
-                            className="color--change yellow"
-                            type="button"
-                            aria-label="save-color"
-                            onClick={() => {
-                              actions.updateCardColor(card._id, 'yellow');
-                            }}
+                          <UpdateColorButton
+                            color="yellow"
+                            cardID={card._id}
+                            onClick={actions.updateCardColor}
                           />
-                          <button
-                            className="color--change red"
-                            type="button"
-                            aria-label="save-color"
-                            onClick={() => actions.updateCardColor(card._id, 'red')}
+                          <UpdateColorButton
+                            color="red"
+                            cardID={card._id}
+                            onClick={actions.updateCardColor}
                           />
-                          <button
-                            className="color--change purple"
-                            type="button"
-                            aria-label="save-color"
-                            onClick={() => actions.updateCardColor(card._id, 'purple')}
+                          <UpdateColorButton
+                            color="purple"
+                            cardID={card._id}
+                            onClick={actions.updateCardColor}
                           />
                         </div>
                       </div>
